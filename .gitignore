@@ -6,6 +6,9 @@ frontend/node_modules/
 frontend/dist/
 # public/assets/ — не игнорируем, чтобы после clone сайт работал без сборки
 
+# Загруженные пользователями изображения (создаётся автоматически при загрузке)
+public/uploads/
+
 # Локальные данные (SQLite и прежний users.json)
 data/users.json
 data/avito.db
