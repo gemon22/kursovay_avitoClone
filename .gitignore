@@ -1,0 +1,40 @@
+# Зависимости
+node_modules/
+frontend/node_modules/
+
+# Сборка фронтенда (генерируется через npm run build)
+frontend/dist/
+# public/assets/ — не игнорируем, чтобы после clone сайт работал без сборки
+
+# Локальные данные (SQLite и прежний users.json)
+data/users.json
+data/avito.db
+data/avito.db-wal
+data/avito.db-shm
+
+# Окружение и секреты
+.env
+.env.local
+.env.*.local
+
+# Логи
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE и ОС
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Временные файлы
+*.tmp
+*.temp
+.cache/
