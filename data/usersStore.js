@@ -28,7 +28,10 @@ function createUser(data) {
     data.role || 'user',
     now
   );
-  return findUserById(info.lastInsertRowid);
+  const id = Number(info.lastInsertRowid);
+  const user = findUserById(id);
+  if (!user) throw new Error('Не удалось получить созданного пользователя');
+  return user;
 }
 
 function updateUser(id, data) {

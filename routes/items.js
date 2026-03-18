@@ -63,7 +63,7 @@ router.post('/', authRequired, (req, res) => {
     ...payload,
     ownerId: req.user.id,
   });
-  res.status(201).json(newItem);
+  res.status(201).json(withStats(newItem));
 });
 
 // Обновить объявление

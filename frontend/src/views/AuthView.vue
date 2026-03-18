@@ -35,6 +35,10 @@ async function onLoginSubmit(e) {
 
 async function onRegisterSubmit(e) {
   e?.preventDefault()
+  if ((regPassword.value || '').length < 8) {
+    alert('Пароль должен быть не менее 8 символов')
+    return
+  }
   try {
     const data = assertAuthPayload(await apiRequest('/auth/register', {
       method: 'POST',
@@ -67,14 +71,14 @@ async function onRegisterSubmit(e) {
       </div>
       <form v-if="tab === 'login'" class="form-grid" @submit="onLoginSubmit">
         <input v-model="loginEmail" type="email" placeholder="Email" required class="form-row-full">
-        <input v-model="loginPassword" type="password" placeholder="Пароль" required class="form-row-full">
+        <input v-model="loginPassword" type="password" placeholder="Пароль (мин. 8 символов)" required minlength="8" class="form-row-full">
         <button type="submit" class="primary-btn form-row-full">Войти</button>
       </form>
       <form v-else class="form-grid" @submit="onRegisterSubmit">
         <input v-model="regName" type="text" placeholder="Имя" required class="form-row-full">
         <input v-model="regEmail" type="email" placeholder="Email" required class="form-row-full">
         <input v-model="regPhone" type="text" placeholder="Телефон" class="form-row-full">
-        <input v-model="regPassword" type="password" placeholder="Пароль" required class="form-row-full">
+        <input v-model="regPassword" type="password" placeholder="Пароль (мин. 8 символов)" required minlength="8" class="form-row-full">
         <button type="submit" class="primary-btn form-row-full">Создать аккаунт</button>
       </form>
     </div>

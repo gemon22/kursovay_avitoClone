@@ -120,7 +120,7 @@ async function submitCreate() {
     return
   }
   try {
-    await apiRequest('/items', {
+    const newItem = await apiRequest('/items', {
       method: 'POST',
       body: JSON.stringify({
         title: p.title.trim(),
@@ -134,7 +134,12 @@ async function submitCreate() {
     createFormOpen.value = false
     createPayload.value = { title: '', price: '', formCategory: '', formLocation: '', image: '', description: '' }
     router.replace({ query: { ...route.query, create: undefined } })
-    loadItems()
+    // Сразу добавляем новое объявление в список без перезагрузки страницы
+    if (newItem && newItem.id) {
+      items.value = [newItem, ...items.value]
+    } else {
+      await loadItems()
+    }
   } catch (err) {
     alert(err.message)
   }

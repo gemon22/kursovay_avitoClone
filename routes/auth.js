@@ -13,6 +13,9 @@ router.post('/register', async (req, res) => {
   if (!normalizedEmail || !password) {
     return res.status(400).json({ message: 'Email и пароль обязательны' });
   }
+  if (String(password).length < 8) {
+    return res.status(400).json({ message: 'Пароль должен быть не менее 8 символов' });
+  }
 
   if (findUserByEmail(normalizedEmail)) {
     return res.status(409).json({ message: 'Пользователь с таким email уже существует' });
@@ -38,6 +41,9 @@ router.post('/login', async (req, res) => {
 
   if (!normalizedEmail || !password) {
     return res.status(400).json({ message: 'Email и пароль обязательны' });
+  }
+  if (String(password).length < 8) {
+    return res.status(400).json({ message: 'Пароль должен быть не менее 8 символов' });
   }
 
   const user = findUserByEmail(normalizedEmail);
